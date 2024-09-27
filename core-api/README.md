@@ -75,3 +75,45 @@ You can also run tests from VSCode debugger scripts:
 
 - Jest All - to run all tests using debugger
 - Jest Current File - to run tests in current open file
+
+
+
+###Mutation examples:
+1) Add doctor
+```
+   {
+      query: `
+          mutation AddDoctor($doctor: AddDoctorInput!) {
+             addDoctor(doctor: $doctor) {
+               id
+               name
+             }
+          }
+      `,
+      variables: {
+        "doctor": { "name": "Dr.Lora"}
+      },
+   }
+   ```
+
+2) Add doctor's availability
+
+```
+  {
+    query: `
+        mutation AddDoctorAvailability($availability: AddDoctorAvailabilityInput!) {
+          addDoctorAvailability(availability: $availability) {
+            id
+          }
+        }
+    `,
+    variables: {
+      "availability":  {
+        "doctorId": "1",
+        "dayOfWeek": 3,
+        "startTimeUtc": "8:00",
+        "endTimeUtc": "15:00"
+      }
+    },
+  }
+```
